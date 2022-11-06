@@ -46,7 +46,13 @@ struct ContentView: View {
                     Text("Daily coffee intake")
                         .font(.headline)
                     
-                    Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups", value: $coffeeAmount, in: 1...15)
+//                    Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups", value: $coffeeAmount, in: 1...15)
+                    Picker("Number of cups", selection: $coffeeAmount) {
+                        ForEach(1..<10, id: \.self){ cup in
+                            Text("\(cup)")
+                        }
+                    }
+                    
                 }
         
             }
@@ -81,7 +87,7 @@ struct ContentView: View {
 
             
         } catch {
-            //something went wrong
+            
             alertTitle = "Error"
             alertMessage = "Sorry, there was a problem calculating your bedtime."
         }
